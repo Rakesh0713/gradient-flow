@@ -44,14 +44,14 @@ export function NoteCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay }}
       layout
-      className="break-inside-avoid mb-4"
+      className="h-full"
     >
       <Card className={cn(
-        "group hover-lift transition-all duration-300 relative overflow-hidden",
-        "shadow-card hover:shadow-hover",
+        "group hover-lift transition-all duration-300 relative overflow-hidden h-full",
+        "shadow-card hover:shadow-hover flex flex-col",
         colorClass
       )}>
-        <CardContent className="p-4">
+        <CardContent className="p-4 h-full flex flex-col">
           {/* Pin indicator */}
           {note.isPinned && (
             <div className="absolute top-2 right-2">
@@ -60,16 +60,18 @@ export function NoteCard({
           )}
 
           {/* Content */}
-          <div className="space-y-3">
-            <h3 className="font-semibold text-foreground line-clamp-2 pr-6">
+          <div className="space-y-3 h-full flex flex-col">
+            <h3 className="font-semibold text-foreground line-clamp-2 pr-6 flex-shrink-0">
               {note.title}
             </h3>
             
-            <p className="text-sm text-muted-foreground line-clamp-6">
-              {note.content}
-            </p>
+            <div className="custom-scrollbar overflow-y-auto flex-1 min-h-0">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {note.content}
+              </p>
+            </div>
             
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-shrink-0 pt-2 border-t border-border/30">
               <span className="text-xs text-muted-foreground">
                 {new Date(note.createdAt).toLocaleDateString()}
               </span>

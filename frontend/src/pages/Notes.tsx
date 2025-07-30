@@ -115,7 +115,7 @@ export function Notes() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="page-transition space-y-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -193,16 +193,23 @@ export function Notes() {
                 <Pin className="h-5 w-5 text-primary" />
                 <h2 className="text-xl font-semibold text-foreground">Pinned Notes</h2>
               </div>
-              <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {pinnedNotes.map((note, index) => (
-                  <NoteCard
+                  <motion.div
                     key={note.id}
-                    note={note}
-                    delay={index * 0.05}
-                    onEdit={openEditModal}
-                    onDelete={handleDeleteNote}
-                    onTogglePin={handleTogglePin}
-                  />
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="h-64"
+                  >
+                    <NoteCard
+                      note={note}
+                      delay={index * 0.05}
+                      onEdit={openEditModal}
+                      onDelete={handleDeleteNote}
+                      onTogglePin={handleTogglePin}
+                    />
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -219,16 +226,23 @@ export function Notes() {
                 <StickyNoteIcon className="h-5 w-5 text-muted-foreground" />
                 <h2 className="text-xl font-semibold text-foreground">All Notes</h2>
               </div>
-              <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {unpinnedNotes.map((note, index) => (
-                  <NoteCard
+                  <motion.div
                     key={note.id}
-                    note={note}
-                    delay={(pinnedNotes.length + index) * 0.05}
-                    onEdit={openEditModal}
-                    onDelete={handleDeleteNote}
-                    onTogglePin={handleTogglePin}
-                  />
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: (pinnedNotes.length + index) * 0.05 }}
+                    className="h-64"
+                  >
+                    <NoteCard
+                      note={note}
+                      delay={(pinnedNotes.length + index) * 0.05}
+                      onEdit={openEditModal}
+                      onDelete={handleDeleteNote}
+                      onTogglePin={handleTogglePin}
+                    />
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

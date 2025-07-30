@@ -38,21 +38,38 @@ const navigationItems = [
 
 const sidebarVariants = {
   open: {
-    width: "16rem"
+    width: "16rem",
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1],
+    }
   },
   closed: {
-    width: "4rem"
+    width: "4rem",
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1],
+    }
   }
 };
 
 const contentVariants = {
   open: {
     opacity: 1,
-    x: 0
+    x: 0,
+    transition: {
+      duration: 0.3,
+      delay: 0.1,
+      ease: [0.4, 0, 0.2, 1],
+    }
   },
   closed: {
     opacity: 0,
-    x: -20
+    x: -20,
+    transition: {
+      duration: 0.2,
+      ease: [0.4, 0, 0.2, 1],
+    }
   }
 };
 
@@ -94,7 +111,6 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isMobileOpen, setIsMobile
       <motion.aside
         variants={sidebarVariants}
         animate={isCollapsed ? "closed" : "open"}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={cn(
           "fixed left-0 top-0 z-50 h-full gradient-primary shadow-elegant transition-all duration-300",
           "md:relative md:translate-x-0",

@@ -108,7 +108,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="page-transition space-y-8">
       {/* Welcome Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
